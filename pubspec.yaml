@@ -1,0 +1,59 @@
+name: fundsy
+description: "A personal finance management platform."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^2.0.0
+  decimal: ^3.2.6
+  fl_chart: ^1.2.0
+  flutter_local_notifications: ^22.3.2
+  flutter_timezone: ^5.1.1
+  material_symbols_icons: ^4.2960.0
+  path: ^1.9.1
+  provider: ^6.1.5+1
+  shared_preferences: ^2.5.6
+  sqflite: ^2.4.4+2
+  timezone: ^0.11.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          style: normal
+          weight: 300
+        - asset: assets/fonts/Poppins-LightItalic.ttf
+          style: italic
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          style: normal
+          weight: 500
+        - asset: assets/fonts/Poppins-MediumItalic.ttf
+          style: italic
+          weight: 500
+        - asset: assets/fonts/Poppins-Bold.ttf
+          style: normal
+          weight: 700
+        - asset: assets/fonts/Poppins-BoldItalic.ttf
+          style: italic
+          weight: 700
