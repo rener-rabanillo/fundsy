@@ -19,9 +19,9 @@ abstract final class AppTheme {
     textTheme: AppTypography.typography,
     scaffoldBackgroundColor: AppColors.scaffoldBackground,
     appBarTheme: AppComponents.appBarThemeData,
-    bottomNavigationBarTheme: AppComponents.bottomNavigationBarThemeData,
     floatingActionButtonTheme: AppComponents.floatingActionButtonThemeData,
     iconTheme: AppComponents.iconThemeData,
+    navigationBarTheme: AppComponents.navigationBarThemeData,
   );
 
   static final darkTheme = ThemeData(
@@ -39,8 +39,8 @@ abstract final class AppTheme {
     textTheme: AppTypography.typography,
     scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
     appBarTheme: AppComponents.darkAppBarThemeData,
-    bottomNavigationBarTheme: AppComponents.darkBottomNavigationBarThemeData,
     floatingActionButtonTheme: AppComponents.darkFloatingActionButtonThemeData,
     iconTheme: AppComponents.darkIconThemeData,
+    navigationBarTheme: AppComponents.darkNavigationBarThemeData,
   );
 }
