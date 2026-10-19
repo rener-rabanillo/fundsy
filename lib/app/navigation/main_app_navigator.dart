@@ -27,7 +27,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> {
   ];
 
   final List<Widget> _screens = const [
-    HomeScreen(),
+    HomePage(),
     AccountsScreen(),
     CategoriesScreen(),
     TransactionsScreen(),
