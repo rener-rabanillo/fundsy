@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'category_card.dart';
+// Correct import path for the add category bottom sheet widget inside widgets folder
+import '../widgets/add_category_bottom_sheet.dart';
 
 /// CategoriesScreen displays financial categories grouped into tabs:
 /// All, Incomes, Expenses, Goals, Payables, and Receivables.
@@ -12,6 +14,16 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   int selectedCategoryTab = 0; // 0: All, 1: Incomes, 2: Expenses, 3: Goals, 4: Payables, 5: Receivables
+
+  /// Opens the Add Category bottom sheet modal
+  void _showAddCategoryModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const AddCategoryBottomSheet(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +53,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             ),
             const SizedBox(height: 16),
 
-            // 2. Add Category Button (Aligned to the right like the "+ Add account" design)
+            // 2. Add Category Button with clean border and zero overlap
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Align(
@@ -50,6 +62,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.0),
+                    border: Border.all(color: Colors.grey.shade200, width: 1.2),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.03),
@@ -58,23 +71,31 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                     ],
                   ),
-                  child: OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add_rounded, color: Color(0xFF0F172A), size: 20),
-                    label: const Text(
-                      'Add category',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0F172A),
-                        fontSize: 13.5,
+                  child: Material(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: InkWell(
+                      onTap: () => _showAddCategoryModal(context),
+                      borderRadius: BorderRadius.circular(20.0),
+                      splashFactory: NoSplash.splashFactory,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.add_rounded, color: Color(0xFF1A0B8C), size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              'Add category',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1A0B8C),
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.grey.shade200, width: 1.2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     ),
                   ),
                 ),
