@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'category_card.dart';
-// Correct import path for the add category bottom sheet widget inside widgets folder
 import '../widgets/add_category_bottom_sheet.dart';
 
 /// CategoriesScreen displays financial categories grouped into tabs:

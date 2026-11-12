@@ -13,9 +13,7 @@ class MainAppNavigator extends StatefulWidget {
   const MainAppNavigator({super.key});
 
   @override
-  State<MainAppNavigator> createState() {
-    return _MainAppNavigatorState();
-  }
+  State<MainAppNavigator> createState() => _MainAppNavigatorState();
 }
 
 class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerProviderStateMixin {
@@ -62,7 +60,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
     if (extractedText != null && extractedText.isNotEmpty) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('OCR Success! Na-scan ang resibo.')),
+          const SnackBar(content: Text('OCR Success! Receipt scanned.')),
         );
       }
     }
@@ -92,7 +90,15 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
   }
 
   final List<String> _titles = const ['Home', 'Accounts', 'Categories', 'Transactions', 'Insights'];
-  final List<Widget> _screens = const [HomePage(), AccountsScreen(), CategoriesScreen(), TransactionsScreen(), InsightsScreen()];
+
+  // Fixed: Changed HomePage() to HomeScreen()
+  final List<Widget> _screens = const [
+    HomeScreen(),
+    AccountsScreen(),
+    CategoriesScreen(),
+    TransactionsScreen(),
+    InsightsScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +120,6 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
           ),
         ],
       ),
-      // Inalis na natin ang dark background/overlay, kaya direkta nang ipinapakita ang screen
       body: _screens[_currentIndex],
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
@@ -175,12 +180,34 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (index) => setState(() => _currentIndex = index),
+        indicatorColor: const Color(0xFF1A0B8C), // Solid blue indicator pill
+        backgroundColor: Colors.white,
         destinations: const [
-          NavigationDestination(icon: Icon(Symbols.home_rounded), label: 'Home'),
-          NavigationDestination(icon: Icon(Symbols.money_bag_rounded), label: 'Accounts'),
-          NavigationDestination(icon: Icon(Symbols.layers_rounded), label: 'Categories'),
-          NavigationDestination(icon: Icon(Symbols.payments_rounded), label: 'Transactions'),
-          NavigationDestination(icon: Icon(Symbols.bar_chart_rounded), label: 'Insights'),
+          NavigationDestination(
+            icon: Icon(Symbols.home_rounded),
+            selectedIcon: Icon(Symbols.home_rounded, color: Colors.white),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Symbols.money_bag_rounded),
+            selectedIcon: Icon(Symbols.money_bag_rounded, color: Colors.white),
+            label: 'Accounts',
+          ),
+          NavigationDestination(
+            icon: Icon(Symbols.layers_rounded),
+            selectedIcon: Icon(Symbols.layers_rounded, color: Colors.white),
+            label: 'Categories',
+          ),
+          NavigationDestination(
+            icon: Icon(Symbols.payments_rounded),
+            selectedIcon: Icon(Symbols.payments_rounded, color: Colors.white),
+            label: 'Transactions',
+          ),
+          NavigationDestination(
+            icon: Icon(Symbols.bar_chart_rounded),
+            selectedIcon: Icon(Symbols.bar_chart_rounded, color: Colors.white),
+            label: 'Insights',
+          ),
         ],
       ),
     );

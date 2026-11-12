@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-/// HomePage represents the main dashboard screen of the Fundsy application.
+/// HomeScreen represents the main dashboard screen of the Fundsy application.
 /// It displays the total balance, income/expense analytics, and top spending categories.
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
