@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
 import 'signup_screen.dart';
+import 'login_screen.dart';
+import 'package:fundsy/app/themes/app_colors.dart';
+import 'package:fundsy/app/navigation/main_app_navigator.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -16,6 +18,7 @@ class WelcomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
+
               // Logo Placeholder Container
               Container(
                 width: 140,
@@ -39,27 +42,38 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              // Main Tagline
+
+              // Main Tagline utilizing AppColors.primary
               const Text(
                 'Take control of your\nfinancial health.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: AppColors.primary,
                   height: 1.2,
                 ),
               ),
+              const SizedBox(height: 12),
+              const Text(
+                'Manage your personal finances easily, securely, and smartly.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
               const Spacer(),
-              // Navigate to Sign Up Screen
+
+              // Button 1: Get started -> Navigates to SignupScreen
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 52,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A0B8C),
+                    backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
                     ),
                     elevation: 0,
                   ),
@@ -73,36 +87,65 @@ class WelcomeScreen extends StatelessWidget {
                     'Get started',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
-              // Navigate to Log In Screen
+              const SizedBox(height: 14),
+
+              // Button 2: Continue as Guest -> Shows top snackbar with delay, then navigates
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 52,
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Color(0xFFE5E5E5)),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
                     ),
+                    side: const BorderSide(color: AppColors.primary, width: 1.5),
+                    backgroundColor: Colors.white,
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    // Show SnackBar at the top of the screen
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text(
+                          'Logged in as Guest. Financial data will not sync to server.',
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
+                        duration: const Duration(seconds: 2),
+                        backgroundColor: AppColors.primary,
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height - 180,
+                          left: 16,
+                          right: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     );
+
+                    // Delay navigation slightly so user can view the top notification banner
+                    Future.delayed(const Duration(seconds: 1), () {
+                      if (context.mounted) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MainAppNavigator()),
+                              (route) => false,
+                        );
+                      }
+                    });
                   },
                   child: const Text(
-                    'Log in',
+                    'Continue as guest',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primary,
                     ),
                   ),
                 ),

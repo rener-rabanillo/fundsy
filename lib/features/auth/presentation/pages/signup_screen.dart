@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'otp_screen.dart'; // Import OtpScreen for email verification flow
+import 'otp_screen.dart';
+import 'package:fundsy/app/themes/app_colors.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -28,56 +29,50 @@ class _SignupScreenState extends State<SignupScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1C0F8A)),
+          icon: const Icon(Icons.arrow_back, color: AppColors.primary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 4.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Refactored Logo Area: Professional Finance Icon with Brand Name
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1C0F8A).withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Icon(
-                      Icons.account_balance_wallet_rounded,
-                      color: Color(0xFF1C0F8A),
-                      size: 28,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'Fundsy',
+              // Logo Placeholder Container (Matched to LoginScreen size)
+              Container(
+                width: 120,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey.shade400, width: 1.5),
+                ),
+                child: const Center(
+                  child: Text(
+                    'LOGO PLACEHOLDER',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      color: Colors.grey,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF1C0F8A),
-                      letterSpacing: 0.5,
+                      fontSize: 10,
+                      letterSpacing: 1,
                     ),
                   ),
-                ],
+                ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
-              // Header Title with Deep Indigo Brand Color
+              // Header Title with AppColors.primary Brand Color
               const Text(
                 'Get started for free!',
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C0F8A),
+                  color: AppColors.primary,
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 4),
               const Text(
                 'Sign up to create your financial account',
                 style: TextStyle(
@@ -85,7 +80,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   color: Colors.grey,
                 ),
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 20),
 
               // Username Field
               TextField(
@@ -93,7 +88,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: InputDecoration(
                   labelText: 'Username',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
-                  prefixIcon: const Icon(Icons.person_outline, color: Color(0xFF1C0F8A)),
+                  prefixIcon: const Icon(Icons.person_outline, color: AppColors.primary),
                   filled: true,
                   fillColor: Colors.grey.shade50,
                   border: OutlineInputBorder(
@@ -106,11 +101,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
-                    borderSide: const BorderSide(color: Color(0xFF1C0F8A), width: 2),
+                    borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
 
               // Email Field
               TextField(
@@ -118,7 +113,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
-                  prefixIcon: const Icon(Icons.email_outlined, color: Color(0xFF1C0F8A)),
+                  prefixIcon: const Icon(Icons.email_outlined, color: AppColors.primary),
                   filled: true,
                   fillColor: Colors.grey.shade50,
                   border: OutlineInputBorder(
@@ -131,11 +126,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
-                    borderSide: const BorderSide(color: Color(0xFF1C0F8A), width: 2),
+                    borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
 
               // Password Field
               TextField(
@@ -144,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
-                  prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF1C0F8A)),
+                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.primary),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -168,11 +163,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
-                    borderSide: const BorderSide(color: Color(0xFF1C0F8A), width: 2),
+                    borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
 
               // Confirm Password Field
               TextField(
@@ -181,7 +176,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: InputDecoration(
                   labelText: 'Confirm Password',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
-                  prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF1C0F8A)),
+                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.primary),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
@@ -205,24 +200,24 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
-                    borderSide: const BorderSide(color: Color(0xFF1C0F8A), width: 2),
+                    borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
 
               // Terms and Conditions agreement text
               const Text(
                 'By continuing you agree to Fundsy\'s Terms of Service',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+                style: TextStyle(fontSize: 11, color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 14),
 
               // Sign Up Button -> Navigates to OtpScreen for verification
               SizedBox(
                 width: double.infinity,
-                height: 52,
+                height: 48,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF8BC34A), // Accent Green
@@ -232,7 +227,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     elevation: 0,
                   ),
                   onPressed: () {
-                    // Navigate to OtpScreen for email verification / 2FA flow
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const OtpScreen()),
@@ -248,28 +242,28 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
 
               // Divider with 'Or' text separating standard signup and social login
               Row(
                 children: [
                   Expanded(child: Divider(color: Colors.grey.shade300)),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Text(
                       'Or',
-                      style: TextStyle(color: Colors.grey.shade500, fontSize: 14),
+                      style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
                     ),
                   ),
                   Expanded(child: Divider(color: Colors.grey.shade300)),
                 ],
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
 
               // Continue with Google Button
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 52),
+                  minimumSize: const Size(double.infinity, 48),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
@@ -307,7 +301,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
 
               // Switch to Login screen
               Row(
@@ -315,7 +309,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 children: [
                   const Text(
                     "Already have an account? ",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.grey, fontSize: 13),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -328,13 +322,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       'Log in',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1C0F8A),
+                        color: AppColors.primary,
+                        fontSize: 13,
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Required for FilteringTextInputFormatter
+import 'package:flutter/services.dart';
+import 'package:fundsy/app/themes/app_colors.dart';
 import 'package:fundsy/app/navigation/main_app_navigator.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -72,7 +73,7 @@ class _OtpScreenState extends State<OtpScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: AppColors.primary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -83,30 +84,38 @@ class _OtpScreenState extends State<OtpScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              // Icon Header for Verification
+
+              // Logo Placeholder Container
               Container(
-                width: 70,
-                height: 70,
+                width: 140,
+                height: 80,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1A0B8C).withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey.shade400, width: 1.5),
                 ),
                 child: const Center(
-                  child: Icon(
-                    Icons.lock_reset_rounded,
-                    size: 36,
-                    color: Color(0xFF1A0B8C),
+                  child: Text(
+                    'LOGO PLACEHOLDER',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 24),
+
               // Title Header
               const Text(
                 'Enter Verification Code',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: AppColors.primary,
                 ),
               ),
               const SizedBox(height: 8),
@@ -149,23 +158,23 @@ class _OtpScreenState extends State<OtpScreen> {
                   hintStyle: TextStyle(letterSpacing: 8, color: Colors.grey.shade400),
                   // Changes border to red if _hasError is true, otherwise normal grey/indigo
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(14),
                     borderSide: BorderSide(
-                      color: _hasError ? Colors.redAccent : Colors.grey,
+                      color: _hasError ? Colors.redAccent : Colors.grey.shade300,
                       width: _hasError ? 2.0 : 1.0,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(14),
                     borderSide: BorderSide(
-                      color: _hasError ? Colors.redAccent : Colors.grey.shade400,
+                      color: _hasError ? Colors.redAccent : Colors.grey.shade200,
                       width: _hasError ? 2.0 : 1.0,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(14),
                     borderSide: BorderSide(
-                      color: _hasError ? Colors.redAccent : const Color(0xFF1A0B8C),
+                      color: _hasError ? Colors.redAccent : AppColors.primary,
                       width: 2.0,
                     ),
                   ),
@@ -192,15 +201,16 @@ class _OtpScreenState extends State<OtpScreen> {
               ],
 
               const SizedBox(height: 24),
+
               // Verify & Proceed Button (Turns red if there is an error)
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 52,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: _hasError ? Colors.redAccent : const Color(0xFF1A0B8C),
+                    backgroundColor: _hasError ? Colors.redAccent : AppColors.primary,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
                     ),
                     elevation: 0,
                   ),
@@ -209,7 +219,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     'Verify Code',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
@@ -224,7 +234,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                     decoration: BoxDecoration(
                       color: Colors.grey.shade50,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
                       border: Border.all(color: Colors.grey.shade200),
                     ),
                     child: Row(

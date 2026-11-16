@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
+import 'package:fundsy/app/themes/app_colors.dart';
 import 'package:fundsy/app/navigation/main_app_navigator.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1C0F8A)),
+          icon: const Icon(Icons.arrow_back, color: AppColors.primary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -35,43 +36,37 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Refactored Logo Area: Professional Finance Icon with Brand Name (Matching SignupScreen)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1C0F8A).withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Icon(
-                      Icons.account_balance_wallet_rounded,
-                      color: Color(0xFF1C0F8A),
-                      size: 28,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'Fundsy',
+              // Logo Placeholder Container
+              Container(
+                width: 120,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey.shade400, width: 1.5),
+                ),
+                child: const Center(
+                  child: Text(
+                    'LOGO PLACEHOLDER',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      color: Colors.grey,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF1C0F8A),
-                      letterSpacing: 0.5,
+                      fontSize: 10,
+                      letterSpacing: 1,
                     ),
                   ),
-                ],
+                ),
               ),
               const SizedBox(height: 24),
 
-              // Header Title with Deep Indigo Brand Color
+              // Header Title with AppColors.primary Brand Color
               const Text(
                 'Welcome back!',
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C0F8A),
+                  color: AppColors.primary,
                 ),
               ),
               const SizedBox(height: 6),
@@ -90,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
-                  prefixIcon: const Icon(Icons.email_outlined, color: Color(0xFF1C0F8A)),
+                  prefixIcon: const Icon(Icons.email_outlined, color: AppColors.primary),
                   filled: true,
                   fillColor: Colors.grey.shade50,
                   border: OutlineInputBorder(
@@ -103,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
-                    borderSide: const BorderSide(color: Color(0xFF1C0F8A), width: 2),
+                    borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
               ),
@@ -116,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   labelStyle: TextStyle(color: Colors.grey.shade600),
-                  prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF1C0F8A)),
+                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.primary),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -140,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
-                    borderSide: const BorderSide(color: Color(0xFF1C0F8A), width: 2),
+                    borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
               ),
@@ -167,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 52,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1C0F8A), // Deep Indigo theme
+                    backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
@@ -274,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Sign up',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1C0F8A),
+                        color: AppColors.primary,
                       ),
                     ),
                   ),
