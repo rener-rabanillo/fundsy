@@ -8,6 +8,9 @@ import 'package:fundsy/features/insights/presentation/pages/insights_screen.dart
 import 'package:fundsy/features/transactions/presentation/utils/ocr_helper.dart';
 import 'package:fundsy/features/transactions/presentation/utils/voice_helper.dart';
 import 'package:fundsy/features/transactions/presentation/widgets/manual_entry_bottom_sheet.dart';
+import 'package:fundsy/app/themes/app_colors.dart';
+import 'hamburger_menu.dart';
+import 'notification_bar.dart';
 
 class MainAppNavigator extends StatefulWidget {
   const MainAppNavigator({super.key});
@@ -91,7 +94,6 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
 
   final List<String> _titles = const ['Home', 'Accounts', 'Categories', 'Transactions', 'Insights'];
 
-  // Fixed: Changed HomePage() to HomeScreen()
   final List<Widget> _screens = const [
     HomeScreen(),
     AccountsScreen(),
@@ -104,14 +106,27 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Symbols.menu_rounded),
+        // Using Builder here guarantees we get the correct localized context to open the Scaffold drawer smoothly
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Symbols.menu_rounded),
+          ),
         ),
         title: Text(_titles[_currentIndex]),
         actions: [
+          // Notification bell icon triggers the NotificationBar bottom sheet design
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) => const NotificationBar(),
+              );
+            },
             icon: const Icon(Symbols.notifications_none_rounded),
           ),
           IconButton(
@@ -120,6 +135,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
           ),
         ],
       ),
+      drawer: const HamburgerMenu(), // Attach the designed drawer here
       body: _screens[_currentIndex],
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
@@ -128,7 +144,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
           if (_isOpened) ...[
             FloatingActionButton.small(
               heroTag: 'voiceBtn',
-              backgroundColor: const Color(0xFF1A0B8C),
+              backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
               elevation: 2,
               splashColor: Colors.transparent,
@@ -141,7 +157,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
           if (_isOpened) ...[
             FloatingActionButton.small(
               heroTag: 'cameraBtn',
-              backgroundColor: const Color(0xFF1A0B8C),
+              backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
               elevation: 2,
               splashColor: Colors.transparent,
@@ -154,7 +170,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
           if (_isOpened) ...[
             FloatingActionButton.small(
               heroTag: 'manualBtn',
-              backgroundColor: const Color(0xFF1A0B8C),
+              backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
               elevation: 2,
               splashColor: Colors.transparent,
@@ -165,7 +181,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
             const SizedBox(height: 12),
           ],
           FloatingActionButton(
-            backgroundColor: const Color(0xFF1A0B8C),
+            backgroundColor: AppColors.primary,
             foregroundColor: Colors.white,
             splashColor: Colors.transparent,
             highlightElevation: 6,
@@ -180,7 +196,7 @@ class _MainAppNavigatorState extends State<MainAppNavigator> with SingleTickerPr
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (index) => setState(() => _currentIndex = index),
-        indicatorColor: const Color(0xFF1A0B8C), // Solid blue indicator pill
+        indicatorColor: AppColors.primary,
         backgroundColor: Colors.white,
         destinations: const [
           NavigationDestination(
