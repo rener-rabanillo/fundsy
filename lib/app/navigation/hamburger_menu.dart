@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fundsy/app/themes/app_colors.dart';
 import 'package:fundsy/features/auth/presentation/pages/welcome_screen.dart';
+import 'user settings/settings_screen.dart';
 
 class HamburgerMenu extends StatelessWidget {
   const HamburgerMenu({super.key});
+
+  void _openSettings(BuildContext context) {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    Navigator.of(context).pop();
+    navigator.push(
+      MaterialPageRoute(builder: (_) => const SettingsScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,6 @@ class HamburgerMenu extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Logo Placeholder Box
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
@@ -37,14 +45,13 @@ class HamburgerMenu extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Close (X) button with subtle grey background circle
                   IconButton(
                     style: IconButton.styleFrom(
                       backgroundColor: Colors.grey.shade100,
                       padding: const EdgeInsets.all(8),
                     ),
                     icon: const Icon(Icons.close, size: 20, color: Colors.black87),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
               ),
@@ -111,21 +118,18 @@ class HamburgerMenu extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              // Navigation Menu Items with styled containers
+              // Navigation Menu Items
               _buildMenuItem(
                 icon: Icons.settings_outlined,
                 title: 'Settings',
-                onTap: () {
-                  Navigator.pop(context);
-                  // TODO: Navigate to Settings screen
-                },
+                onTap: () => _openSettings(context),
               ),
               const SizedBox(height: 8),
               _buildMenuItem(
                 icon: Icons.help_outline_rounded,
                 title: 'Help and Feedback',
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
                   // TODO: Navigate to Help and Feedback screen
                 },
               ),
@@ -135,11 +139,10 @@ class HamburgerMenu extends StatelessWidget {
               // Divider before Logout
               Divider(color: Colors.grey.shade200, height: 24),
 
-              // Log out Option styled distinctively
+              // Log out Option
               InkWell(
                 onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
+                  Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => const WelcomeScreen()),
                         (route) => false,
                   );
@@ -178,8 +181,11 @@ class HamburgerMenu extends StatelessWidget {
     );
   }
 
-  // Helper widget for clean list items
-  Widget _buildMenuItem({required IconData icon, required String title, required VoidCallback onTap}) {
+  Widget _buildMenuItem({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),

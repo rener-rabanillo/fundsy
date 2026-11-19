@@ -206,10 +206,21 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 8),
 
-              // Terms and Conditions agreement text
-              const Text(
-                'By continuing you agree to Fundsy\'s Terms of Service',
-                style: TextStyle(fontSize: 11, color: Colors.grey),
+              // Terms and Conditions agreement text with red highlight
+              const Text.rich(
+                TextSpan(
+                  text: 'By continuing you agree to Fundsy\'s ',
+                  style: TextStyle(fontSize: 11, color: Colors.grey),
+                  children: [
+                    TextSpan(
+                      text: 'Terms of Service',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 14),
