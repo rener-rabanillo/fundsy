@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fundsy/app/themes/app_colors.dart';
 import 'account_screen.dart';
 import 'display_screen.dart';
+import 'notifications_screen.dart';
+import 'privacy_screen.dart';
+import 'security_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -30,6 +33,7 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         children: [
+          // General Settings Section
           Text(
             'GENERAL',
             style: TextStyle(
@@ -48,6 +52,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
+                // Navigate to Account screen
                 _buildSettingItem(
                   icon: Icons.account_circle_rounded,
                   title: 'Account',
@@ -58,6 +63,8 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 Divider(height: 1, indent: 64, endIndent: 16, color: Colors.grey.shade100),
+
+                // Navigate to Display screen
                 _buildSettingItem(
                   icon: Icons.contrast_rounded,
                   title: 'Display',
@@ -68,18 +75,23 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 Divider(height: 1, indent: 64, endIndent: 16, color: Colors.grey.shade100),
+
+                // Navigate to Notifications screen
                 _buildSettingItem(
                   icon: Icons.notifications_rounded,
                   title: 'Notifications',
                   subtitle: 'Budget alerts, reminders, and updates',
-                  onTap: () {
-                    // TODO: Add Notifications screen later
-                  },
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+                  ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 24),
+
+          // Privacy & Safety Settings Section
           Text(
             'PRIVACY & SAFETY',
             style: TextStyle(
@@ -98,22 +110,27 @@ class SettingsScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
+                // Navigate to Privacy screen
                 _buildSettingItem(
                   icon: Icons.lock_rounded,
                   title: 'Privacy',
                   subtitle: 'Data permissions and visibility preferences',
-                  onTap: () {
-                    // TODO: Add Privacy screen later
-                  },
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const PrivacyScreen()),
+                  ),
                 ),
                 Divider(height: 1, indent: 64, endIndent: 16, color: Colors.grey.shade100),
+
+                // Navigate to Security screen
                 _buildSettingItem(
                   icon: Icons.shield_rounded,
                   title: 'Security',
                   subtitle: 'Password, app lock, and protection settings',
-                  onTap: () {
-                    // TODO: Add Security screen later
-                  },
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SecurityScreen()),
+                  ),
                 ),
               ],
             ),
@@ -123,6 +140,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  // Reusable setting row widget
   Widget _buildSettingItem({
     required IconData icon,
     required String title,

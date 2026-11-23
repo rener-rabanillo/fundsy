@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundsy/app/themes/app_colors.dart';
 import 'package:fundsy/features/auth/presentation/pages/welcome_screen.dart';
+import 'help_and_feedback_screen.dart';
 import 'user settings/settings_screen.dart';
 
 class HamburgerMenu extends StatelessWidget {
@@ -11,6 +12,14 @@ class HamburgerMenu extends StatelessWidget {
     Navigator.of(context).pop();
     navigator.push(
       MaterialPageRoute(builder: (_) => const SettingsScreen()),
+    );
+  }
+
+  void _openHelpAndFeedback(BuildContext context) {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    Navigator.of(context).pop();
+    navigator.push(
+      MaterialPageRoute(builder: (_) => const HelpAndFeedbackScreen()),
     );
   }
 
@@ -128,10 +137,7 @@ class HamburgerMenu extends StatelessWidget {
               _buildMenuItem(
                 icon: Icons.help_outline_rounded,
                 title: 'Help and Feedback',
-                onTap: () {
-                  Navigator.of(context).pop();
-                  // TODO: Navigate to Help and Feedback screen
-                },
+                onTap: () => _openHelpAndFeedback(context),
               ),
 
               const Spacer(),
