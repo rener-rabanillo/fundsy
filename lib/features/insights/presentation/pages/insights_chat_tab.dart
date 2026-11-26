@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundsy/app/themes/app_colors.dart';
 
 /// A chat tab widget for the Insights screen that allows users
 /// to interact with the Fundsy AI financial assistant.
@@ -13,7 +14,7 @@ class _InsightsChatTabState extends State<InsightsChatTab> {
   final TextEditingController _messageController = TextEditingController();
 
   // Sample chat messages list
-  final List<ChatMessage> _messages = [
+  final _messages = [
     ChatMessage(
       text: "Hello! I am your Fundsy AI assistant. How can I help you analyze your finances today?",
       isUser: false,
@@ -32,7 +33,7 @@ class _InsightsChatTabState extends State<InsightsChatTab> {
   ];
 
   // Quick prompt suggestions for the user
-  final List<String> _quickSuggestions = [
+  final _quickSuggestions = [
     "How much did I save this month?",
     "Analyze my budget",
     "Upcoming bills due",
@@ -104,7 +105,11 @@ class _InsightsChatTabState extends State<InsightsChatTab> {
                 child: ActionChip(
                   label: Text(
                     _quickSuggestions[index],
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF1A0B8C)),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.primary,
+                    ),
                   ),
                   backgroundColor: Colors.white,
                   side: BorderSide(color: Colors.grey.shade200, width: 1.2),
@@ -117,9 +122,9 @@ class _InsightsChatTabState extends State<InsightsChatTab> {
         ),
         const SizedBox(height: 8),
 
-        // Chat input text field area
+        // Chat input text field area (cleared from the floating '+' button on the right)
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+          padding: const EdgeInsets.fromLTRB(16.0, 10.0, 76.0, 10.0),
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border(top: BorderSide(color: Colors.grey.shade200, width: 1.0)),
@@ -138,12 +143,13 @@ class _InsightsChatTabState extends State<InsightsChatTab> {
                   onSubmitted: _sendMessage,
                 ),
               ),
+              const SizedBox(width: 8),
               GestureDetector(
                 onTap: () => _sendMessage(_messageController.text),
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(
-                    color: Color(0xFF1A0B8C),
+                    color: AppColors.primary,
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(Icons.send_rounded, color: Colors.white, size: 16),
@@ -164,10 +170,10 @@ class _InsightsChatTabState extends State<InsightsChatTab> {
         margin: const EdgeInsets.only(bottom: 12.0),
         padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
         constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width * 0.75, // Limits bubble width up to 75% of the screen
+          maxWidth: MediaQuery.of(context).size.width * 0.75,
         ),
         decoration: BoxDecoration(
-          color: message.isUser ? const Color(0xFF1A0B8C) : Colors.white,
+          color: message.isUser ? AppColors.primary : Colors.white,
           borderRadius: BorderRadius.circular(18.0),
           border: message.isUser ? null : Border.all(color: Colors.grey.shade100, width: 1.2),
           boxShadow: [
